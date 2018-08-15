@@ -118,9 +118,12 @@ def data_output_xls(data_list):
         wb = Workbook()
     else:
         wb = load_workbook(file_name)
-    title = "Hentai_" + str(today)
+    title = "Hentai"
+    try:
+        work_sheet = wb[title]
+    except KeyError:
+        work_sheet = wb.create_sheet(title=title)
     # 标题行
-    work_sheet = wb.create_sheet(title=title)
     _ = work_sheet.cell(column=1, row=1, value="%s" % '电影名称')
     _ = work_sheet.cell(column=2, row=1, value="%s" % '链接地址')
 
