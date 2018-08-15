@@ -74,16 +74,16 @@ def details_url_list_getter(url):
 def details_info_getter(details_url):
     random_sleep()  # 随机防ban
     browser.get(details_url)
-    soup = BeautifulSoup(browser.page_source, 'xml')
-
+    page_source = browser.page_source
     # 有时候网页会夏姬八跳
-    if '发送任意内容邮件给' not in soup:
+    if '发送任意内容邮件给' not in page_source:
         return None
+    soup = BeautifulSoup(page_source, 'xml')
 
     result_dic = dict()  # 返回爬取结果字典
 
     film_info_block = soup.find('div', attrs={'class': 'film_info clearfix'})
-    film_title = film_info_block.find('dd', attrs={'class': 'film_title'})
+    film_title = film_info_block.find('dd', attrs={'class': 'film_title'}).get_text()
 
     # 电影名
     result_dic['film_title'] = film_title
@@ -122,13 +122,13 @@ def data_output_xls(data_list):
     # 标题行
     work_sheet = wb.create_sheet(title=title)
     _ = work_sheet.cell(column=1, row=1, value="%s" % '电影名称')
-    _ = work_sheet.cell(column=1, row=1, value="%s" % '链接地址')
+    _ = work_sheet.cell(column=2, row=1, value="%s" % '链接地址')
 
-    row = 2
     # 数据行
     for it in data_list:
         _ = work_sheet.cell(column=1, row=row, value="%s" % it['film_title'])  # 电影名称
-        _ = work_sheet.cell(column=1, row=row, value="%s" % it['download_url'])  # 电影名称
+        _ = work_sheet.cell(column=2, row=row, value="%s" % it['download_url'])  # 电影名称
+        row += 1
     wb.save(filename=file_name)
     print('数据输出完成....')
 
