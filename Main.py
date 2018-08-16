@@ -9,7 +9,8 @@ from openpyxl import load_workbook
 from selenium import webdriver
 
 chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")
+# 开启无头模式
+chrome_options.add_argument("--headless")
 # 不加载图片,提高效率
 prefs = {"profile.managed_default_content_settings.images": 2}
 chrome_options.add_experimental_option("prefs", prefs)
