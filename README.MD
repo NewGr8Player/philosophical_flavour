@@ -16,7 +16,7 @@
 ## 安装python环境
 
 建议使用Anaconda进行版本管理
-(Anaconda安装教程)[http://newgr8player.gitee.io/2018/03/24/Python%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83Anaconda%E4%BD%BF%E7%94%A8/]
+[Anaconda安装教程](http://newgr8player.gitee.io/2018/03/24/Python%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83Anaconda%E4%BD%BF%E7%94%A8/)
 
 ## 将项目下载到本地
 
